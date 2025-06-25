@@ -1,5 +1,4 @@
 # Dashboard SFMTA: Análisis del Sistema de Transporte Público de San Francisco
-https://kemely2018.github.io/DASHBOARD/
 
 Este proyecto es un **Dashboard interactivo** que permite explorar datos estáticos GTFS del sistema de transporte público de San Francisco (SFMTA) mediante visualizaciones D3. Incluye:
 
