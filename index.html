@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <title>Dashboard SFMTA – Análisis del Sistema de Transporte</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <!-- Tipografía de Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet" />
+
+  <!-- Tu CSS principal -->
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <!-- ===================================================
+       CONTENEDOR PRINCIPAL: HEADER, SIDEBAR Y MAIN
+       =================================================== -->
+  <div id="container">
+
+    <!-- ===========================
+         HEADER (encabezado en toda la parte superior)
+         =========================== -->
+    <header id="header">
+      <h1>Dashboard SFMTA: Análisis del Sistema de Transporte</h1>
+    </header>
+
+    <!-- ===========================
+         SIDEBAR (Filtros + Botones Top 10)
+         =========================== -->
+    <aside id="sidebar">
+      <section class="panel">
+        <h2>Filtros Generales</h2>
+
+        <!-- Filtro: Paradas (antes “Tipo de Ruta”) -->
+        <div class="filter-block">
+          <label for="select-route-type"><strong>Paradas:</strong></label>
+          <select id="select-route-type">
+            <option value="all">Todas</option>
+            <option value="0">Tranvía (0)</option>
+            <option value="3">Bus (3)</option>
+            <option value="5">Cable Car (5)</option>
+          </select>
+        </div>
+
+        <!-- Filtro: Ruta específica -->
+        <div class="filter-block">
+          <label for="select-route"><strong>Ruta:</strong></label>
+          <select id="select-route">
+            <!-- Se llenará dinámicamente desde script.js -->
+          </select>
+        </div>
+      </section>
+
+      <!-- Botones para mostrar/ocultar Top 10 Rutas y Paradas -->
+      <section class="panel">
+        <h2>Top 10</h2>
+        <button id="btn-top10-rutas" class="toggle-button">Ver Top 10 Rutas</button>
+        <div id="panel-top10-rutas" class="collapse-panel hidden">
+          <table id="top10-routes-table">
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>Ruta</th>
+                <th>Viajes</th>
+              </tr>
+            </thead>
+            <tbody>
+              <!-- Se llenará dinámicamente -->
+            </tbody>
+          </table>
+        </div>
+
+        <button id="btn-top10-paradas" class="toggle-button">Ver Top 10 Paradas</button>
+        <div id="panel-top10-paradas" class="collapse-panel hidden">
+          <table id="top10-stops-table">
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>Stop ID</th>
+                <th>Uso</th>
+              </tr>
+            </thead>
+            <tbody>
+              <!-- Se llenará dinámicamente -->
+            </tbody>
+          </table>
+        </div>
+      </section>
+    </aside>
+
+    <!-- ===========================
+         MAIN (Mapa + Gráficos)
+         =========================== -->
+    <main id="main-content">
+      <div class="grid-container">
+
+        <!-- A: Hipótesis 3 – Mapa de calor de densidad de paradas -->
+        <section id="map-section" class="item a card">
+          <div class="card-header">
+            <h2>Hipótesis 3: Mapa de Calor de Densidad de Paradas</h2>
+            <!-- Checkbox dentro del encabezado del mapa -->
+            <div class="header-controls">
+              <input type="checkbox" id="toggle-heatmap" checked />
+              <label for="toggle-heatmap">Mostrar Densidad de Paradas</label>
+            </div>
+          </div>
+          <div class="card-body">
+            <!-- SVG en lugar de Leaflet -->
+            <svg id="map-svg"></svg>
+            <div id="map-legend" class="legend">
+              <span class="legend-label">Baja</span>
+              <div class="legend-gradient"></div>
+              <span class="legend-label">Alta</span>
+            </div>
+          </div>
+        </section>
+
+        <!-- B: Hipótesis 1 – Scatterplot de Paradas vs Viajes -->
+        <section id="hyp1-section" class="item b card">
+          <div class="card-header">
+            <h2>Hipótesis 1: Paradas vs. Viajes</h2>
+          </div>
+          <div class="card-body">
+            <svg id="chart-scatter"></svg>
+          </div>
+        </section>
+
+        <!-- C: Hipótesis 2 – Llegadas por Hora (Laborables) -->
+        <section id="hyp2-section" class="item c card">
+          <div class="card-header">
+            <h2>Hipótesis 2: Llegadas por Hora (Laborables)</h2>
+          </div>
+          <div class="card-body">
+            <svg id="chart-line"></svg>
+          </div>
+        </section>
+
+      </div>
+    </main>
+
+  </div>
+
+  <!-- D3.js v6 (para los gráficos y la carga de GeoJSON) -->
+  <script src="https://d3js.org/d3.v6.min.js"></script>
+  <!-- Tu script principal -->
+  <script src="script.js"></script>
+</body>
+</html>

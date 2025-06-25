@@ -1,0 +1,381 @@
+/* =====================================
+   RESET y TIPOGRAFÍA
+   ===================================== */
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Roboto', sans-serif;
+  background-color: #f0f0f5;
+  color: #333;
+  line-height: 1.5;
+}
+
+h1, h2, h3 {
+  font-weight: 500;
+}
+
+/* =====================================
+   CONTENEDOR PRINCIPAL
+   ===================================== */
+#container {
+  display: grid;
+  grid-template-columns: 250px 1fr;
+  grid-template-rows: auto 1fr;
+  height: 100vh;
+  gap: 10px;
+}
+
+/* =====================================
+   HEADER
+   ===================================== */
+#header {
+  grid-column: 1 / -1;
+  background: #2c3e50;
+  color: #fff;
+  padding: 16px 24px;
+  border-bottom: 2px solid #1a252f;
+}
+
+#header h1 {
+  font-size: 1.5rem;
+  margin-bottom: 4px;
+}
+
+#header .subtitle {
+  font-size: 0.9rem;
+  opacity: 0.8;
+}
+
+/* =====================================
+   SIDEBAR (Filtros + Botones Top 10)
+   ===================================== */
+aside#sidebar {
+  grid-row: 2 / -1;
+  background: #fff;
+  border-right: 1px solid #ddd;
+  overflow-y: auto;
+  padding: 16px;
+}
+
+aside#sidebar .panel {
+  margin-bottom: 24px;
+}
+
+aside#sidebar .panel h2 {
+  font-size: 1.1rem;
+  margin-bottom: 12px;
+  border-bottom: 2px solid #ecf0f1;
+  padding-bottom: 4px;
+  color: #2c3e50;
+}
+
+/* Bloques de filtro */
+.filter-block {
+  margin-bottom: 16px;
+}
+
+.filter-block label {
+  display: block;
+  margin-bottom: 6px;
+  font-weight: 500;
+  font-size: 0.9rem;
+}
+
+.filter-block select {
+  width: 100%;
+  padding: 6px;
+  font-size: 0.9rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+/* Botones Top 10 */
+.toggle-button {
+  display: block;
+  width: 100%;
+  background: #1abc9c;
+  color: #fff;
+  border: none;
+  padding: 10px 0;
+  margin-bottom: 8px;
+  border-radius: 4px;
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.toggle-button:hover {
+  background: #17a589;
+}
+
+/* Paneles colapsables con tablas */
+.collapse-panel {
+  margin-top: 8px;
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease;
+}
+
+.collapse-panel.visible {
+  max-height: 600px; /* Suficiente para mostrar la tabla */
+}
+
+.collapse-panel.hidden {
+  max-height: 0;
+}
+
+/* Tablas Top 10 */
+.collapse-panel table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.9rem;
+  margin-top: 8px;
+}
+
+.collapse-panel th,
+.collapse-panel td {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: left;
+}
+
+.collapse-panel th {
+  background: #ecf0f1;
+}
+
+.collapse-panel tbody tr:nth-child(even) {
+  background: #fafafa;
+}
+
+.collapse-panel tbody tr:hover {
+  background: #f1f1f1;
+}
+
+/* =====================================
+   MAIN CONTENT (Mapa + Gráficos)
+   ===================================== */
+main#main-content {
+  grid-row: 2 / -1;
+  background: #f0f0f5;
+  padding: 16px;
+  overflow: hidden;
+}
+
+.grid-container {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  grid-template-rows: 2fr 1fr;
+  gap: 16px;
+  height: 100%;
+}
+
+/* -------------------------------------
+   Estilos de Tarjeta (Card) en cada sección
+   ------------------------------------- */
+.card {
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.card-header {
+  background: #ecf0f1;
+  padding: 12px 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.card-header h2 {
+  font-size: 1rem;
+  color: #2c3e50;
+}
+
+.header-controls {
+  display: flex;
+  align-items: center;
+}
+
+.header-controls label {
+  margin-left: 6px;
+  font-size: 0.9rem;
+  cursor: pointer;
+}
+
+.header-controls input[type="checkbox"] {
+  width: 16px;
+  height: 16px;
+  cursor: pointer;
+}
+
+.card-body {
+  flex: 1;
+  position: relative;
+  padding: 12px 16px;
+}
+
+/* -------------------------------------
+   Sección A: Hipótesis 3 – Mapa (SVG)
+   ------------------------------------- */
+#map-section {
+  grid-area: 1 / 1 / 3 / 2; /* ocupa dos filas */
+  display: flex;
+  flex-direction: column;
+}
+
+/* Convertimos el contenedor .card-body de #map-section en flex column */
+#map-section .card-body {
+  display: flex;
+  flex-direction: column;
+  padding: 0; /* Para que el SVG ocupe todo el espacio */
+}
+
+/* El SVG del mapa ocupa todo el espacio restante: */
+#map-svg {
+  flex: 1;
+  width: 100%;
+  height: 100%;
+}
+
+/* Leyenda inferior del mapa (se mantiene absoluta dentro de .card-body) */
+#map-legend {
+  position: absolute;
+  bottom: 16px;
+  left: 24px;
+  display: flex;
+  align-items: center;
+  background: rgba(255,255,255,0.85);
+  border-radius: 4px;
+  padding: 4px 8px;
+  font-size: 0.8rem;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.1);
+}
+
+#map-legend .legend-gradient {
+  width: 100px;
+  height: 8px;
+  background: linear-gradient(to right, #ffffb2, #e31a1c);
+  margin: 0 8px;
+}
+
+#map-legend .legend-label {
+  font-weight: 500;
+  color: #444;
+}
+
+/* -------------------------------------
+   Sección B: Hipótesis 1 – Scatterplot
+   ------------------------------------- */
+#hyp1-section {
+  grid-area: 1 / 2 / 2 / 3;
+}
+
+#hyp1-section .card-body {
+  display: flex;
+  flex-direction: column;
+  padding: 0;
+}
+
+#scatter-legend {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+  margin-bottom: 8px;
+}
+
+#scatter-legend .legend-item {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 0.9rem;
+}
+
+#scatter-legend .legend-color {
+  width: 14px;
+  height: 14px;
+  border-radius: 2px;
+  border: 1px solid #ccc;
+}
+
+#scatter-legend .inactive .legend-color {
+  opacity: 0.3;
+}
+
+#chart-scatter {
+  flex: 1;
+  width: 100%;
+  height: 100%;
+}
+
+/* -------------------------------------
+   Sección C: Hipótesis 2 – Línea de Llegadas
+   ------------------------------------- */
+#hyp2-section {
+  grid-area: 2 / 2 / 3 / 3;
+}
+
+#hyp2-section .card-body {
+  display: flex;
+  flex-direction: column;
+  padding: 0;
+}
+
+#chart-line {
+  flex: 1;
+  width: 100%;
+  height: 100%;
+}
+
+#hover-line {
+  pointer-events: none;
+}
+
+/* =====================================
+   TOOLTIP GLOBAL
+   ===================================== */
+.tooltip {
+  position: absolute;
+  pointer-events: none;
+  padding: 6px 10px;
+  background: rgba(0, 0, 0, 0.75);
+  color: #fff;
+  font-size: 0.8rem;
+  border-radius: 4px;
+  z-index: 10;
+  opacity: 0;
+}
+
+/* =====================================
+   RESPONSIVE
+   ===================================== */
+@media (max-width: 1000px) {
+  #container {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto auto 1fr;
+  }
+  aside#sidebar {
+    grid-row: 2 / 3;
+    border-right: none;
+    border-bottom: 1px solid #ddd;
+  }
+  main#main-content {
+    grid-row: 3 / 4;
+  }
+  .grid-container {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto auto auto;
+  }
+  .a { grid-area: 1 / 1 / 2 / 2; }
+  .b { grid-area: 2 / 1 / 3 / 2; }
+  .c { grid-area: 3 / 1 / 4 / 2; }
+}
